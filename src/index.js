@@ -18,9 +18,9 @@ class FormularioNombre extends React.Component {
   render () {
     return(
       <div>
-        <label>Nombre:</label>
+        <label>Nombre completo:</label>
         <input type="text" value={this.state.nombre} onChange={this.handleChange} />
-        <p>Tu nombre es: {this.state.nombre}</p>
+        <p>Tu nombre es: { this.state.nombre ? this.state.nombre : "Aún no se ha insertado el nombre" } </p>
       </div>
     )
   }
