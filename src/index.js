@@ -7,7 +7,8 @@ class FormularioNombre extends React.Component {
     this.state = {
       nombre: "",
       email: "",
-      passwd: ""
+      passwd: "",
+      confirmpasswd: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,6 +17,10 @@ class FormularioNombre extends React.Component {
   handleChange(event) {
     const {name, value} = event.target;
     this.setState( { [name]: value } );
+  }
+
+  passwdMatch() {
+    return this.state.passwd === this.state.confirmpasswd;
   }
 
   render () {
@@ -29,10 +34,20 @@ class FormularioNombre extends React.Component {
         <input type="email" name='email' value={this.state.email} onChange={this.handleChange}/>
         <p>Tu email es: {this.state.email ? this.state.email : "email no insertado" }</p>
       
+        {/* PASSWORD */}
         <label>Inserta la Contraseña:</label>
         <input type='password' name="passwd" value={this.state.passwd} onChange={this.handleChange} />
         <p>Tu contraseña es: 
           {this.state.passwd ?  "•".repeat(this.state.passwd.length) : "no ingresada"}
+        </p>
+
+        <label>Confirma la Contraseña:</label>
+        <input type="password" name="confirmpasswd" value={this.setState.confirmpasswd} onChange={this.handleChange} />
+        <p>
+          {/* confirm passwrd */}
+          Estado: { this.state.confirmpasswd && 
+            this.passwdMatch() ? "Las contraseñas coinciden ✅" : "Las contraseñas no coinciden, intentalo de nuevo.❌"
+          }
         </p>
       </div>
     )
