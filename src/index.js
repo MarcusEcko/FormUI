@@ -6,7 +6,8 @@ class FormularioNombre extends React.Component {
     super(props);
     this.state = {
       nombre: "",
-      email: ""
+      email: "",
+      passwd: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,6 +28,12 @@ class FormularioNombre extends React.Component {
         <label>E-Mail:</label>
         <input type="email" name='email' value={this.state.email} onChange={this.handleChange}/>
         <p>Tu email es: {this.state.email ? this.state.email : "email no insertado" }</p>
+      
+        <label>Inserta la Contraseña:</label>
+        <input type='password' name="passwd" value={this.state.passwd} onChange={this.handleChange} />
+        <p>Tu contraseña es: 
+          {this.state.passwd ?  "•".repeat(this.state.passwd.length) : "no ingresada"}
+        </p>
       </div>
     )
   }
