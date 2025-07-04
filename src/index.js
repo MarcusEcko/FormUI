@@ -23,7 +23,33 @@ class FormularioNombre extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    this.setState( {submit: this.state.submit });
+    
+    const {email, passwd} = this.state;
+
+    const emailIsValid = this.verifyEmail(email);
+    const passwdMatch = this.passwdMatch(passwd);
+
+    if(!emailIsValid){
+      this.setState({mensaje: "Email inválido"})
+      return;
+    }
+
+    if(!passwdMatch){
+      this.setState({mensaje: "Contraseña no válida"})
+      return;
+    }
+
+    if(passwdMatch && emailIsValid){
+      this.setState({mensaje: "Registro Exitoso"})
+      return;
+    }
+  }
+
+  verifyEmail(email){
+    const cleanEmail = email.trim();
+
+    if(cleanEmail === "") return false;
+    return cleanEmail.includes("@") && cleanEmail.includes(".");
   }
 
   /*    check password   */
@@ -36,6 +62,7 @@ class FormularioNombre extends React.Component {
 
       <div>
         <form onSubmit={this.handleSubmit}>
+
           <label>Nombre completo:</label>
           <input type="text" name='nombre' value={this.state.nombre} onChange={this.handleChange} />
           <p>Tu nombre es: { this.state.nombre ? this.state.nombre : "Aún no se ha insertado el nombre" } </p>
@@ -52,7 +79,7 @@ class FormularioNombre extends React.Component {
           </p>
 
           <label>Confirma la Contraseña:</label>
-          <input type="password" name="confirmpasswd" value={this.setState.confirmpasswd} onChange={this.handleChange} />
+          <input type="password" name="confirmpasswd" value={this.state.confirmpasswd} onChange={this.handleChange} />
           <p>
             {/* check passwrd */}
             Estado: { this.state.confirmpasswd && 
@@ -60,8 +87,9 @@ class FormularioNombre extends React.Component {
             }
           </p>
 
-          <button type="submit">Update Profile</button>
-          <h1>{this.state.submit}</h1>
+          <button type="submit">Actualizar Perfil</button>
+          <h3>{this.state.mensaje}</h3>
+
         </form>
 
       </div>
