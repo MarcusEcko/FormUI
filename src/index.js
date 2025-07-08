@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-class FormularioNombre extends React.Component {
+class FormularioDatos extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -9,13 +9,14 @@ class FormularioNombre extends React.Component {
       email: "",
       passwd: "",
       confirmpasswd: "",
-      submit : ""
+      mensaje : ""
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //////////////////////////
   handleChange(event) {
     const {name, value} = event.target;
     this.setState( { [name]: value } );
@@ -39,10 +40,8 @@ class FormularioNombre extends React.Component {
       return;
     }
 
-    if(passwdMatch && emailIsValid){
-      this.setState({mensaje: "Registro Exitoso"})
-      return;
-    }
+    this.setState({mensaje: "Registro Exitoso"});
+
   }
 
   verifyEmail(email){
@@ -98,10 +97,27 @@ class FormularioNombre extends React.Component {
 
 }
 
+class FormularioInfo extends React.Component{
+  render() {
+    return(
+      <div>
+
+      </div>
+    )
+  }
+}
+
+const FormularioCompleto = () => {
+  <div className='contenedor-formulario'>
+    <FormularioDatos/>
+    <FormularioInfo />
+  </div>
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FormularioNombre />
+    <FormularioCompleto />
   </React.StrictMode>
 );
 
