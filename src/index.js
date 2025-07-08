@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './styles.css';
 
 class FormularioDatos extends React.Component {
   constructor (props) {
@@ -107,12 +108,12 @@ class FormularioInfo extends React.Component{
   }
 }
 
-const FormularioCompleto = () => {
+const FormularioCompleto = () => (
   <div className='contenedor-formulario'>
     <FormularioDatos/>
     <FormularioInfo />
   </div>
-}
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
